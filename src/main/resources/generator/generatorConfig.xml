@@ -14,8 +14,8 @@
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
                         connectionURL="jdbc:sqlserver://127.0.0.1:1433;databaseName=ChurchDB"
-                        userId="sa"
-                        password="loveGod@Xingdi">
+                        userId="**"
+                        password="****">
     </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
