@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.RoleControllerMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.RoleController" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="RoleName" property="rolename" jdbcType="NVARCHAR" />
+    <result column="ControllerName" property="controllername" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RoleName, ControllerName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RoleController
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from RoleController
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.RoleController" >
+    insert into RoleController (ID, RoleName, ControllerName
+      )
+    values (#{id,jdbcType=CHAR}, #{rolename,jdbcType=NVARCHAR}, #{controllername,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.RoleController" >
+    insert into RoleController
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="rolename != null" >
+        RoleName,
+      </if>
+      <if test="controllername != null" >
+        ControllerName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="controllername != null" >
+        #{controllername,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.RoleController" >
+    update RoleController
+    <set >
+      <if test="rolename != null" >
+        RoleName = #{rolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="controllername != null" >
+        ControllerName = #{controllername,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.RoleController" >
+    update RoleController
+    set RoleName = #{rolename,jdbcType=NVARCHAR},
+      ControllerName = #{controllername,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

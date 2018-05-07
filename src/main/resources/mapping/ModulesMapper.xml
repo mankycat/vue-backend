@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.ModulesMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.Modules" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="ModuleName" property="modulename" jdbcType="NVARCHAR" />
+    <result column="ControllerUrl" property="controllerurl" jdbcType="NVARCHAR" />
+    <result column="Sequence" property="sequence" jdbcType="INTEGER" />
+    <result column="ParentID" property="parentid" jdbcType="CHAR" />
+    <result column="Codes" property="codes" jdbcType="NVARCHAR" />
+    <result column="IsEnable" property="isenable" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ModuleName, ControllerUrl, Sequence, ParentID, Codes, IsEnable, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Modules
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Modules
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.Modules" >
+    insert into Modules (ID, ModuleName, ControllerUrl, 
+      Sequence, ParentID, Codes, 
+      IsEnable, Description)
+    values (#{id,jdbcType=CHAR}, #{modulename,jdbcType=NVARCHAR}, #{controllerurl,jdbcType=NVARCHAR}, 
+      #{sequence,jdbcType=INTEGER}, #{parentid,jdbcType=CHAR}, #{codes,jdbcType=NVARCHAR}, 
+      #{isenable,jdbcType=INTEGER}, #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.Modules" >
+    insert into Modules
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="modulename != null" >
+        ModuleName,
+      </if>
+      <if test="controllerurl != null" >
+        ControllerUrl,
+      </if>
+      <if test="sequence != null" >
+        Sequence,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+      <if test="codes != null" >
+        Codes,
+      </if>
+      <if test="isenable != null" >
+        IsEnable,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="modulename != null" >
+        #{modulename,jdbcType=NVARCHAR},
+      </if>
+      <if test="controllerurl != null" >
+        #{controllerurl,jdbcType=NVARCHAR},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="codes != null" >
+        #{codes,jdbcType=NVARCHAR},
+      </if>
+      <if test="isenable != null" >
+        #{isenable,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.Modules" >
+    update Modules
+    <set >
+      <if test="modulename != null" >
+        ModuleName = #{modulename,jdbcType=NVARCHAR},
+      </if>
+      <if test="controllerurl != null" >
+        ControllerUrl = #{controllerurl,jdbcType=NVARCHAR},
+      </if>
+      <if test="sequence != null" >
+        Sequence = #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="codes != null" >
+        Codes = #{codes,jdbcType=NVARCHAR},
+      </if>
+      <if test="isenable != null" >
+        IsEnable = #{isenable,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.Modules" >
+    update Modules
+    set ModuleName = #{modulename,jdbcType=NVARCHAR},
+      ControllerUrl = #{controllerurl,jdbcType=NVARCHAR},
+      Sequence = #{sequence,jdbcType=INTEGER},
+      ParentID = #{parentid,jdbcType=CHAR},
+      Codes = #{codes,jdbcType=NVARCHAR},
+      IsEnable = #{isenable,jdbcType=INTEGER},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

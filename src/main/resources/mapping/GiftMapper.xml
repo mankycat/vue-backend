@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.GiftMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.Gift" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="GiftName" property="giftname" jdbcType="NVARCHAR" />
+    <result column="Separate" property="separate" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GiftName, Separate, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Gift
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Gift
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.Gift" >
+    insert into Gift (ID, GiftName, Separate, 
+      Description)
+    values (#{id,jdbcType=CHAR}, #{giftname,jdbcType=NVARCHAR}, #{separate,jdbcType=INTEGER}, 
+      #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.Gift" >
+    insert into Gift
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="giftname != null" >
+        GiftName,
+      </if>
+      <if test="separate != null" >
+        Separate,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="giftname != null" >
+        #{giftname,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.Gift" >
+    update Gift
+    <set >
+      <if test="giftname != null" >
+        GiftName = #{giftname,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        Separate = #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.Gift" >
+    update Gift
+    set GiftName = #{giftname,jdbcType=NVARCHAR},
+      Separate = #{separate,jdbcType=INTEGER},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

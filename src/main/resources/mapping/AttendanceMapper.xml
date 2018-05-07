@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.AttendanceMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.Attendance" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="WeekReportID" property="weekreportid" jdbcType="CHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="IsGroup" property="isgroup" jdbcType="INTEGER" />
+    <result column="IsChurch" property="ischurch" jdbcType="INTEGER" />
+    <result column="IsLD" property="isld" jdbcType="INTEGER" />
+    <result column="IsCourse" property="iscourse" jdbcType="INTEGER" />
+    <result column="IsTD" property="istd" jdbcType="INTEGER" />
+    <result column="SpiritualGrowth" property="spiritualgrowth" jdbcType="INTEGER" />
+    <result column="PhoneCare" property="phonecare" jdbcType="INTEGER" />
+    <result column="ByVisiting" property="byvisiting" jdbcType="INTEGER" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="WeekDate" property="weekdate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, WeekReportID, UserID, IsGroup, IsChurch, IsLD, IsCourse, IsTD, SpiritualGrowth, 
+    PhoneCare, ByVisiting, CreateTime, WeekDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Attendance
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Attendance
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.Attendance" >
+    insert into Attendance (ID, WeekReportID, UserID, 
+      IsGroup, IsChurch, IsLD, 
+      IsCourse, IsTD, SpiritualGrowth, 
+      PhoneCare, ByVisiting, CreateTime, 
+      WeekDate)
+    values (#{id,jdbcType=CHAR}, #{weekreportid,jdbcType=CHAR}, #{userid,jdbcType=INTEGER}, 
+      #{isgroup,jdbcType=INTEGER}, #{ischurch,jdbcType=INTEGER}, #{isld,jdbcType=INTEGER}, 
+      #{iscourse,jdbcType=INTEGER}, #{istd,jdbcType=INTEGER}, #{spiritualgrowth,jdbcType=INTEGER}, 
+      #{phonecare,jdbcType=INTEGER}, #{byvisiting,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{weekdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.Attendance" >
+    insert into Attendance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="weekreportid != null" >
+        WeekReportID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="isgroup != null" >
+        IsGroup,
+      </if>
+      <if test="ischurch != null" >
+        IsChurch,
+      </if>
+      <if test="isld != null" >
+        IsLD,
+      </if>
+      <if test="iscourse != null" >
+        IsCourse,
+      </if>
+      <if test="istd != null" >
+        IsTD,
+      </if>
+      <if test="spiritualgrowth != null" >
+        SpiritualGrowth,
+      </if>
+      <if test="phonecare != null" >
+        PhoneCare,
+      </if>
+      <if test="byvisiting != null" >
+        ByVisiting,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="weekdate != null" >
+        WeekDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="weekreportid != null" >
+        #{weekreportid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="isgroup != null" >
+        #{isgroup,jdbcType=INTEGER},
+      </if>
+      <if test="ischurch != null" >
+        #{ischurch,jdbcType=INTEGER},
+      </if>
+      <if test="isld != null" >
+        #{isld,jdbcType=INTEGER},
+      </if>
+      <if test="iscourse != null" >
+        #{iscourse,jdbcType=INTEGER},
+      </if>
+      <if test="istd != null" >
+        #{istd,jdbcType=INTEGER},
+      </if>
+      <if test="spiritualgrowth != null" >
+        #{spiritualgrowth,jdbcType=INTEGER},
+      </if>
+      <if test="phonecare != null" >
+        #{phonecare,jdbcType=INTEGER},
+      </if>
+      <if test="byvisiting != null" >
+        #{byvisiting,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekdate != null" >
+        #{weekdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.Attendance" >
+    update Attendance
+    <set >
+      <if test="weekreportid != null" >
+        WeekReportID = #{weekreportid,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="isgroup != null" >
+        IsGroup = #{isgroup,jdbcType=INTEGER},
+      </if>
+      <if test="ischurch != null" >
+        IsChurch = #{ischurch,jdbcType=INTEGER},
+      </if>
+      <if test="isld != null" >
+        IsLD = #{isld,jdbcType=INTEGER},
+      </if>
+      <if test="iscourse != null" >
+        IsCourse = #{iscourse,jdbcType=INTEGER},
+      </if>
+      <if test="istd != null" >
+        IsTD = #{istd,jdbcType=INTEGER},
+      </if>
+      <if test="spiritualgrowth != null" >
+        SpiritualGrowth = #{spiritualgrowth,jdbcType=INTEGER},
+      </if>
+      <if test="phonecare != null" >
+        PhoneCare = #{phonecare,jdbcType=INTEGER},
+      </if>
+      <if test="byvisiting != null" >
+        ByVisiting = #{byvisiting,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekdate != null" >
+        WeekDate = #{weekdate,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.Attendance" >
+    update Attendance
+    set WeekReportID = #{weekreportid,jdbcType=CHAR},
+      UserID = #{userid,jdbcType=INTEGER},
+      IsGroup = #{isgroup,jdbcType=INTEGER},
+      IsChurch = #{ischurch,jdbcType=INTEGER},
+      IsLD = #{isld,jdbcType=INTEGER},
+      IsCourse = #{iscourse,jdbcType=INTEGER},
+      IsTD = #{istd,jdbcType=INTEGER},
+      SpiritualGrowth = #{spiritualgrowth,jdbcType=INTEGER},
+      PhoneCare = #{phonecare,jdbcType=INTEGER},
+      ByVisiting = #{byvisiting,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      WeekDate = #{weekdate,jdbcType=DATE}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

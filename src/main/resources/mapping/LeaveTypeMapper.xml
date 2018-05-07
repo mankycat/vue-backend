@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.LeaveTypeMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.LeaveType" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="LeaveCategory" property="leavecategory" jdbcType="NVARCHAR" />
+    <result column="Separate" property="separate" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LeaveCategory, Separate, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LeaveType
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LeaveType
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.LeaveType" >
+    insert into LeaveType (ID, LeaveCategory, Separate, 
+      Description)
+    values (#{id,jdbcType=CHAR}, #{leavecategory,jdbcType=NVARCHAR}, #{separate,jdbcType=INTEGER}, 
+      #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.LeaveType" >
+    insert into LeaveType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="leavecategory != null" >
+        LeaveCategory,
+      </if>
+      <if test="separate != null" >
+        Separate,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="leavecategory != null" >
+        #{leavecategory,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.LeaveType" >
+    update LeaveType
+    <set >
+      <if test="leavecategory != null" >
+        LeaveCategory = #{leavecategory,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        Separate = #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.LeaveType" >
+    update LeaveType
+    set LeaveCategory = #{leavecategory,jdbcType=NVARCHAR},
+      Separate = #{separate,jdbcType=INTEGER},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

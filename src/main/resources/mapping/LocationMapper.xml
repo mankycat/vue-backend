@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.LocationMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.Location" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="LocationName" property="locationname" jdbcType="NVARCHAR" />
+    <result column="Separate" property="separate" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LocationName, Separate, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Location
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Location
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.Location" >
+    insert into Location (ID, LocationName, Separate, 
+      Description)
+    values (#{id,jdbcType=CHAR}, #{locationname,jdbcType=NVARCHAR}, #{separate,jdbcType=INTEGER}, 
+      #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.Location" >
+    insert into Location
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="locationname != null" >
+        LocationName,
+      </if>
+      <if test="separate != null" >
+        Separate,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="locationname != null" >
+        #{locationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.Location" >
+    update Location
+    <set >
+      <if test="locationname != null" >
+        LocationName = #{locationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        Separate = #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.Location" >
+    update Location
+    set LocationName = #{locationname,jdbcType=NVARCHAR},
+      Separate = #{separate,jdbcType=INTEGER},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

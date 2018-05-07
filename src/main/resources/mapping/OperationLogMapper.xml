@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.OperationLogMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.OperationLog" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OperationAction" property="operationaction" jdbcType="NVARCHAR" />
+    <result column="OperationObject" property="operationobject" jdbcType="NVARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="OperationUserID" property="operationuserid" jdbcType="INTEGER" />
+    <result column="OperationRoleName" property="operationrolename" jdbcType="NVARCHAR" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, OperationAction, OperationObject, CreateTime, OperationUserID, OperationRoleName, 
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from OperationLog
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OperationLog
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.OperationLog" >
+    insert into OperationLog (ID, OperationAction, OperationObject, 
+      CreateTime, OperationUserID, OperationRoleName, 
+      Description)
+    values (#{id,jdbcType=CHAR}, #{operationaction,jdbcType=NVARCHAR}, #{operationobject,jdbcType=NVARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{operationuserid,jdbcType=INTEGER}, #{operationrolename,jdbcType=NVARCHAR}, 
+      #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.OperationLog" >
+    insert into OperationLog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="operationaction != null" >
+        OperationAction,
+      </if>
+      <if test="operationobject != null" >
+        OperationObject,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="operationuserid != null" >
+        OperationUserID,
+      </if>
+      <if test="operationrolename != null" >
+        OperationRoleName,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="operationaction != null" >
+        #{operationaction,jdbcType=NVARCHAR},
+      </if>
+      <if test="operationobject != null" >
+        #{operationobject,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationuserid != null" >
+        #{operationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="operationrolename != null" >
+        #{operationrolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.OperationLog" >
+    update OperationLog
+    <set >
+      <if test="operationaction != null" >
+        OperationAction = #{operationaction,jdbcType=NVARCHAR},
+      </if>
+      <if test="operationobject != null" >
+        OperationObject = #{operationobject,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationuserid != null" >
+        OperationUserID = #{operationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="operationrolename != null" >
+        OperationRoleName = #{operationrolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.OperationLog" >
+    update OperationLog
+    set OperationAction = #{operationaction,jdbcType=NVARCHAR},
+      OperationObject = #{operationobject,jdbcType=NVARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      OperationUserID = #{operationuserid,jdbcType=INTEGER},
+      OperationRoleName = #{operationrolename,jdbcType=NVARCHAR},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

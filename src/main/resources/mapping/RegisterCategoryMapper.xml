@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.RegisterCategoryMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.RegisterCategory" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="RegisterType" property="registertype" jdbcType="NVARCHAR" />
+    <result column="Separate" property="separate" jdbcType="INTEGER" />
+    <result column="ParentID" property="parentid" jdbcType="CHAR" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RegisterType, Separate, ParentID, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RegisterCategory
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from RegisterCategory
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.RegisterCategory" >
+    insert into RegisterCategory (ID, RegisterType, Separate, 
+      ParentID, Description)
+    values (#{id,jdbcType=CHAR}, #{registertype,jdbcType=NVARCHAR}, #{separate,jdbcType=INTEGER}, 
+      #{parentid,jdbcType=CHAR}, #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.RegisterCategory" >
+    insert into RegisterCategory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="registertype != null" >
+        RegisterType,
+      </if>
+      <if test="separate != null" >
+        Separate,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="registertype != null" >
+        #{registertype,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.RegisterCategory" >
+    update RegisterCategory
+    <set >
+      <if test="registertype != null" >
+        RegisterType = #{registertype,jdbcType=NVARCHAR},
+      </if>
+      <if test="separate != null" >
+        Separate = #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.RegisterCategory" >
+    update RegisterCategory
+    set RegisterType = #{registertype,jdbcType=NVARCHAR},
+      Separate = #{separate,jdbcType=INTEGER},
+      ParentID = #{parentid,jdbcType=CHAR},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

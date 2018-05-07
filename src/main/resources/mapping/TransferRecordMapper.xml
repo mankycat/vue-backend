@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.TransferRecordMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.TransferRecord" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="ChurchName" property="churchname" jdbcType="NVARCHAR" />
+    <result column="RegionName" property="regionname" jdbcType="NVARCHAR" />
+    <result column="GroupName" property="groupname" jdbcType="NVARCHAR" />
+    <result column="TransferTime" property="transfertime" jdbcType="TIMESTAMP" />
+    <result column="OperatorUserID" property="operatoruserid" jdbcType="INTEGER" />
+    <result column="OperatorName" property="operatorname" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, UserID, ChurchName, RegionName, GroupName, TransferTime, OperatorUserID, OperatorName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TransferRecord
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TransferRecord
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.TransferRecord" >
+    insert into TransferRecord (ID, UserID, ChurchName, 
+      RegionName, GroupName, TransferTime, 
+      OperatorUserID, OperatorName)
+    values (#{id,jdbcType=CHAR}, #{userid,jdbcType=INTEGER}, #{churchname,jdbcType=NVARCHAR}, 
+      #{regionname,jdbcType=NVARCHAR}, #{groupname,jdbcType=NVARCHAR}, #{transfertime,jdbcType=TIMESTAMP}, 
+      #{operatoruserid,jdbcType=INTEGER}, #{operatorname,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.TransferRecord" >
+    insert into TransferRecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="churchname != null" >
+        ChurchName,
+      </if>
+      <if test="regionname != null" >
+        RegionName,
+      </if>
+      <if test="groupname != null" >
+        GroupName,
+      </if>
+      <if test="transfertime != null" >
+        TransferTime,
+      </if>
+      <if test="operatoruserid != null" >
+        OperatorUserID,
+      </if>
+      <if test="operatorname != null" >
+        OperatorName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="churchname != null" >
+        #{churchname,jdbcType=NVARCHAR},
+      </if>
+      <if test="regionname != null" >
+        #{regionname,jdbcType=NVARCHAR},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=NVARCHAR},
+      </if>
+      <if test="transfertime != null" >
+        #{transfertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatoruserid != null" >
+        #{operatoruserid,jdbcType=INTEGER},
+      </if>
+      <if test="operatorname != null" >
+        #{operatorname,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.TransferRecord" >
+    update TransferRecord
+    <set >
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="churchname != null" >
+        ChurchName = #{churchname,jdbcType=NVARCHAR},
+      </if>
+      <if test="regionname != null" >
+        RegionName = #{regionname,jdbcType=NVARCHAR},
+      </if>
+      <if test="groupname != null" >
+        GroupName = #{groupname,jdbcType=NVARCHAR},
+      </if>
+      <if test="transfertime != null" >
+        TransferTime = #{transfertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatoruserid != null" >
+        OperatorUserID = #{operatoruserid,jdbcType=INTEGER},
+      </if>
+      <if test="operatorname != null" >
+        OperatorName = #{operatorname,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.TransferRecord" >
+    update TransferRecord
+    set UserID = #{userid,jdbcType=INTEGER},
+      ChurchName = #{churchname,jdbcType=NVARCHAR},
+      RegionName = #{regionname,jdbcType=NVARCHAR},
+      GroupName = #{groupname,jdbcType=NVARCHAR},
+      TransferTime = #{transfertime,jdbcType=TIMESTAMP},
+      OperatorUserID = #{operatoruserid,jdbcType=INTEGER},
+      OperatorName = #{operatorname,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

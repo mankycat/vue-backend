@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.ConferencePlanMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.ConferencePlan" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="LocationID" property="locationid" jdbcType="CHAR" />
+    <result column="ConferenceBeginDate" property="conferencebegindate" jdbcType="TIMESTAMP" />
+    <result column="ConferenceEndDate" property="conferenceenddate" jdbcType="TIMESTAMP" />
+    <result column="OperationUserID" property="operationuserid" jdbcType="INTEGER" />
+    <result column="Principal" property="principal" jdbcType="NVARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LocationID, ConferenceBeginDate, ConferenceEndDate, OperationUserID, Principal, 
+    CreateTime, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ConferencePlan
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ConferencePlan
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.ConferencePlan" >
+    insert into ConferencePlan (ID, LocationID, ConferenceBeginDate, 
+      ConferenceEndDate, OperationUserID, Principal, 
+      CreateTime, Description)
+    values (#{id,jdbcType=CHAR}, #{locationid,jdbcType=CHAR}, #{conferencebegindate,jdbcType=TIMESTAMP}, 
+      #{conferenceenddate,jdbcType=TIMESTAMP}, #{operationuserid,jdbcType=INTEGER}, #{principal,jdbcType=NVARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.ConferencePlan" >
+    insert into ConferencePlan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="locationid != null" >
+        LocationID,
+      </if>
+      <if test="conferencebegindate != null" >
+        ConferenceBeginDate,
+      </if>
+      <if test="conferenceenddate != null" >
+        ConferenceEndDate,
+      </if>
+      <if test="operationuserid != null" >
+        OperationUserID,
+      </if>
+      <if test="principal != null" >
+        Principal,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="locationid != null" >
+        #{locationid,jdbcType=CHAR},
+      </if>
+      <if test="conferencebegindate != null" >
+        #{conferencebegindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="conferenceenddate != null" >
+        #{conferenceenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationuserid != null" >
+        #{operationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null" >
+        #{principal,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.ConferencePlan" >
+    update ConferencePlan
+    <set >
+      <if test="locationid != null" >
+        LocationID = #{locationid,jdbcType=CHAR},
+      </if>
+      <if test="conferencebegindate != null" >
+        ConferenceBeginDate = #{conferencebegindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="conferenceenddate != null" >
+        ConferenceEndDate = #{conferenceenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationuserid != null" >
+        OperationUserID = #{operationuserid,jdbcType=INTEGER},
+      </if>
+      <if test="principal != null" >
+        Principal = #{principal,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.ConferencePlan" >
+    update ConferencePlan
+    set LocationID = #{locationid,jdbcType=CHAR},
+      ConferenceBeginDate = #{conferencebegindate,jdbcType=TIMESTAMP},
+      ConferenceEndDate = #{conferenceenddate,jdbcType=TIMESTAMP},
+      OperationUserID = #{operationuserid,jdbcType=INTEGER},
+      Principal = #{principal,jdbcType=NVARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

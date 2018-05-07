@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.Department" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="DepartmentName" property="departmentname" jdbcType="VARCHAR" />
+    <result column="Separate" property="separate" jdbcType="INTEGER" />
+    <result column="CreateDate" property="createdate" jdbcType="DATE" />
+    <result column="Description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DepartmentName, Separate, CreateDate, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Department
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Department
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.Department" >
+    insert into Department (ID, DepartmentName, Separate, 
+      CreateDate, Description)
+    values (#{id,jdbcType=CHAR}, #{departmentname,jdbcType=VARCHAR}, #{separate,jdbcType=INTEGER}, 
+      #{createdate,jdbcType=DATE}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.Department" >
+    insert into Department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="departmentname != null" >
+        DepartmentName,
+      </if>
+      <if test="separate != null" >
+        Separate,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="departmentname != null" >
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="separate != null" >
+        #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.Department" >
+    update Department
+    <set >
+      <if test="departmentname != null" >
+        DepartmentName = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="separate != null" >
+        Separate = #{separate,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        CreateDate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.Department" >
+    update Department
+    set DepartmentName = #{departmentname,jdbcType=VARCHAR},
+      Separate = #{separate,jdbcType=INTEGER},
+      CreateDate = #{createdate,jdbcType=DATE},
+      Description = #{description,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

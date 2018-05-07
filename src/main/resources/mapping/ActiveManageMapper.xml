@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.ActiveManageMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.ActiveManage" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="LocationID" property="locationid" jdbcType="CHAR" />
+    <result column="RegisterCategoryID" property="registercategoryid" jdbcType="CHAR" />
+    <result column="RegisterID" property="registerid" jdbcType="CHAR" />
+    <result column="IsCheck" property="ischeck" jdbcType="INTEGER" />
+    <result column="IsChargeStatus" property="ischargestatus" jdbcType="INTEGER" />
+    <result column="ChargeWay" property="chargeway" jdbcType="NVARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="TransactionNumber" property="transactionnumber" jdbcType="NVARCHAR" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, UserID, LocationID, RegisterCategoryID, RegisterID, IsCheck, IsChargeStatus, 
+    ChargeWay, CreateTime, TransactionNumber, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ActiveManage
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ActiveManage
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.ActiveManage" >
+    insert into ActiveManage (ID, UserID, LocationID, 
+      RegisterCategoryID, RegisterID, IsCheck, 
+      IsChargeStatus, ChargeWay, CreateTime, 
+      TransactionNumber, Description)
+    values (#{id,jdbcType=CHAR}, #{userid,jdbcType=INTEGER}, #{locationid,jdbcType=CHAR}, 
+      #{registercategoryid,jdbcType=CHAR}, #{registerid,jdbcType=CHAR}, #{ischeck,jdbcType=INTEGER}, 
+      #{ischargestatus,jdbcType=INTEGER}, #{chargeway,jdbcType=NVARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{transactionnumber,jdbcType=NVARCHAR}, #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.ActiveManage" >
+    insert into ActiveManage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="locationid != null" >
+        LocationID,
+      </if>
+      <if test="registercategoryid != null" >
+        RegisterCategoryID,
+      </if>
+      <if test="registerid != null" >
+        RegisterID,
+      </if>
+      <if test="ischeck != null" >
+        IsCheck,
+      </if>
+      <if test="ischargestatus != null" >
+        IsChargeStatus,
+      </if>
+      <if test="chargeway != null" >
+        ChargeWay,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="transactionnumber != null" >
+        TransactionNumber,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="locationid != null" >
+        #{locationid,jdbcType=CHAR},
+      </if>
+      <if test="registercategoryid != null" >
+        #{registercategoryid,jdbcType=CHAR},
+      </if>
+      <if test="registerid != null" >
+        #{registerid,jdbcType=CHAR},
+      </if>
+      <if test="ischeck != null" >
+        #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="ischargestatus != null" >
+        #{ischargestatus,jdbcType=INTEGER},
+      </if>
+      <if test="chargeway != null" >
+        #{chargeway,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transactionnumber != null" >
+        #{transactionnumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.ActiveManage" >
+    update ActiveManage
+    <set >
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="locationid != null" >
+        LocationID = #{locationid,jdbcType=CHAR},
+      </if>
+      <if test="registercategoryid != null" >
+        RegisterCategoryID = #{registercategoryid,jdbcType=CHAR},
+      </if>
+      <if test="registerid != null" >
+        RegisterID = #{registerid,jdbcType=CHAR},
+      </if>
+      <if test="ischeck != null" >
+        IsCheck = #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="ischargestatus != null" >
+        IsChargeStatus = #{ischargestatus,jdbcType=INTEGER},
+      </if>
+      <if test="chargeway != null" >
+        ChargeWay = #{chargeway,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transactionnumber != null" >
+        TransactionNumber = #{transactionnumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.ActiveManage" >
+    update ActiveManage
+    set UserID = #{userid,jdbcType=INTEGER},
+      LocationID = #{locationid,jdbcType=CHAR},
+      RegisterCategoryID = #{registercategoryid,jdbcType=CHAR},
+      RegisterID = #{registerid,jdbcType=CHAR},
+      IsCheck = #{ischeck,jdbcType=INTEGER},
+      IsChargeStatus = #{ischargestatus,jdbcType=INTEGER},
+      ChargeWay = #{chargeway,jdbcType=NVARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      TransactionNumber = #{transactionnumber,jdbcType=NVARCHAR},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

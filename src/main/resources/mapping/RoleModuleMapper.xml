@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.RoleModuleMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.RoleModule" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="RoleName" property="rolename" jdbcType="NVARCHAR" />
+    <result column="ModuleID" property="moduleid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RoleName, ModuleID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RoleModule
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from RoleModule
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.RoleModule" >
+    insert into RoleModule (ID, RoleName, ModuleID
+      )
+    values (#{id,jdbcType=CHAR}, #{rolename,jdbcType=NVARCHAR}, #{moduleid,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.RoleModule" >
+    insert into RoleModule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="rolename != null" >
+        RoleName,
+      </if>
+      <if test="moduleid != null" >
+        ModuleID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleid != null" >
+        #{moduleid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.RoleModule" >
+    update RoleModule
+    <set >
+      <if test="rolename != null" >
+        RoleName = #{rolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="moduleid != null" >
+        ModuleID = #{moduleid,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.RoleModule" >
+    update RoleModule
+    set RoleName = #{rolename,jdbcType=NVARCHAR},
+      ModuleID = #{moduleid,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

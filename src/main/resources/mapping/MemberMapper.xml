@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.MemberMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.Member" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="MemberName" property="membername" jdbcType="NVARCHAR" />
+    <result column="PrimaryStatus" property="primarystatus" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MemberName, PrimaryStatus, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Member
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Member
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.Member" >
+    insert into Member (ID, MemberName, PrimaryStatus, 
+      Description)
+    values (#{id,jdbcType=CHAR}, #{membername,jdbcType=NVARCHAR}, #{primarystatus,jdbcType=INTEGER}, 
+      #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.Member" >
+    insert into Member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="membername != null" >
+        MemberName,
+      </if>
+      <if test="primarystatus != null" >
+        PrimaryStatus,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="membername != null" >
+        #{membername,jdbcType=NVARCHAR},
+      </if>
+      <if test="primarystatus != null" >
+        #{primarystatus,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.Member" >
+    update Member
+    <set >
+      <if test="membername != null" >
+        MemberName = #{membername,jdbcType=NVARCHAR},
+      </if>
+      <if test="primarystatus != null" >
+        PrimaryStatus = #{primarystatus,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.Member" >
+    update Member
+    set MemberName = #{membername,jdbcType=NVARCHAR},
+      PrimaryStatus = #{primarystatus,jdbcType=INTEGER},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

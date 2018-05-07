@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.Organization" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OrganizationName" property="organizationname" jdbcType="NVARCHAR" />
+    <result column="RoleName" property="rolename" jdbcType="NVARCHAR" />
+    <result column="OrganizationType" property="organizationtype" jdbcType="NVARCHAR" />
+    <result column="ParentID" property="parentid" jdbcType="CHAR" />
+    <result column="Codes" property="codes" jdbcType="NVARCHAR" />
+    <result column="IsEnable" property="isenable" jdbcType="INTEGER" />
+    <result column="MeetingDate" property="meetingdate" jdbcType="NVARCHAR" />
+    <result column="MeetingLocation" property="meetinglocation" jdbcType="NVARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, OrganizationName, RoleName, OrganizationType, ParentID, Codes, IsEnable, MeetingDate, 
+    MeetingLocation, CreateTime, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Organization
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Organization
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.Organization" >
+    insert into Organization (ID, OrganizationName, RoleName, 
+      OrganizationType, ParentID, Codes, 
+      IsEnable, MeetingDate, MeetingLocation, 
+      CreateTime, Description)
+    values (#{id,jdbcType=CHAR}, #{organizationname,jdbcType=NVARCHAR}, #{rolename,jdbcType=NVARCHAR}, 
+      #{organizationtype,jdbcType=NVARCHAR}, #{parentid,jdbcType=CHAR}, #{codes,jdbcType=NVARCHAR}, 
+      #{isenable,jdbcType=INTEGER}, #{meetingdate,jdbcType=NVARCHAR}, #{meetinglocation,jdbcType=NVARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.Organization" >
+    insert into Organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="organizationname != null" >
+        OrganizationName,
+      </if>
+      <if test="rolename != null" >
+        RoleName,
+      </if>
+      <if test="organizationtype != null" >
+        OrganizationType,
+      </if>
+      <if test="parentid != null" >
+        ParentID,
+      </if>
+      <if test="codes != null" >
+        Codes,
+      </if>
+      <if test="isenable != null" >
+        IsEnable,
+      </if>
+      <if test="meetingdate != null" >
+        MeetingDate,
+      </if>
+      <if test="meetinglocation != null" >
+        MeetingLocation,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="organizationname != null" >
+        #{organizationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="organizationtype != null" >
+        #{organizationtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="codes != null" >
+        #{codes,jdbcType=NVARCHAR},
+      </if>
+      <if test="isenable != null" >
+        #{isenable,jdbcType=INTEGER},
+      </if>
+      <if test="meetingdate != null" >
+        #{meetingdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="meetinglocation != null" >
+        #{meetinglocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.Organization" >
+    update Organization
+    <set >
+      <if test="organizationname != null" >
+        OrganizationName = #{organizationname,jdbcType=NVARCHAR},
+      </if>
+      <if test="rolename != null" >
+        RoleName = #{rolename,jdbcType=NVARCHAR},
+      </if>
+      <if test="organizationtype != null" >
+        OrganizationType = #{organizationtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentID = #{parentid,jdbcType=CHAR},
+      </if>
+      <if test="codes != null" >
+        Codes = #{codes,jdbcType=NVARCHAR},
+      </if>
+      <if test="isenable != null" >
+        IsEnable = #{isenable,jdbcType=INTEGER},
+      </if>
+      <if test="meetingdate != null" >
+        MeetingDate = #{meetingdate,jdbcType=NVARCHAR},
+      </if>
+      <if test="meetinglocation != null" >
+        MeetingLocation = #{meetinglocation,jdbcType=NVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.Organization" >
+    update Organization
+    set OrganizationName = #{organizationname,jdbcType=NVARCHAR},
+      RoleName = #{rolename,jdbcType=NVARCHAR},
+      OrganizationType = #{organizationtype,jdbcType=NVARCHAR},
+      ParentID = #{parentid,jdbcType=CHAR},
+      Codes = #{codes,jdbcType=NVARCHAR},
+      IsEnable = #{isenable,jdbcType=INTEGER},
+      MeetingDate = #{meetingdate,jdbcType=NVARCHAR},
+      MeetingLocation = #{meetinglocation,jdbcType=NVARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

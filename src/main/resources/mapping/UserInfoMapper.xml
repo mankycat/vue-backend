@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.UserInfo" >
+    <id column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="LoginName" property="loginname" jdbcType="NVARCHAR" />
+    <result column="PassWord" property="password" jdbcType="NVARCHAR" />
+    <result column="UserName" property="username" jdbcType="NVARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="NVARCHAR" />
+    <result column="Gender" property="gender" jdbcType="NVARCHAR" />
+    <result column="PersonID" property="personid" jdbcType="NVARCHAR" />
+    <result column="Education" property="education" jdbcType="NVARCHAR" />
+    <result column="Marriage" property="marriage" jdbcType="NVARCHAR" />
+    <result column="Phone" property="phone" jdbcType="NVARCHAR" />
+    <result column="CourseID" property="courseid" jdbcType="CHAR" />
+    <result column="MiniRoleID" property="miniroleid" jdbcType="CHAR" />
+    <result column="MemberID" property="memberid" jdbcType="CHAR" />
+    <result column="GiftName" property="giftname" jdbcType="NVARCHAR" />
+    <result column="GroupID" property="groupid" jdbcType="CHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CardID" property="cardid" jdbcType="NVARCHAR" />
+    <result column="IsBaptism" property="isbaptism" jdbcType="INTEGER" />
+    <result column="BaptismDate" property="baptismdate" jdbcType="DATE" />
+    <result column="JoinChurchDate" property="joinchurchdate" jdbcType="DATE" />
+    <result column="NativePlace" property="nativeplace" jdbcType="NVARCHAR" />
+    <result column="CurrentAddress" property="currentaddress" jdbcType="NVARCHAR" />
+    <result column="Speciality" property="speciality" jdbcType="NVARCHAR" />
+    <result column="AssistantGrouper" property="assistantgrouper" jdbcType="NVARCHAR" />
+    <result column="ProfessionName" property="professionname" jdbcType="NVARCHAR" />
+    <result column="ContributionNO" property="contributionno" jdbcType="NVARCHAR" />
+    <result column="IsDelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="OtherGroupID" property="othergroupid" jdbcType="CHAR" />
+    <result column="Birthday" property="birthday" jdbcType="NVARCHAR" />
+    <result column="Barcode" property="barcode" jdbcType="NVARCHAR" />
+    <result column="WeChatName" property="wechatname" jdbcType="NVARCHAR" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserID, LoginName, PassWord, UserName, NickName, Gender, PersonID, Education, Marriage, 
+    Phone, CourseID, MiniRoleID, MemberID, GiftName, GroupID, CreateDate, CardID, IsBaptism, 
+    BaptismDate, JoinChurchDate, NativePlace, CurrentAddress, Speciality, AssistantGrouper, 
+    ProfessionName, ContributionNO, IsDelete, OtherGroupID, Birthday, Barcode, WeChatName, 
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from UserInfo
+    where UserID = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from UserInfo
+    where UserID = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.UserInfo" >
+    insert into UserInfo (UserID, LoginName, PassWord, 
+      UserName, NickName, Gender, 
+      PersonID, Education, Marriage, 
+      Phone, CourseID, MiniRoleID, 
+      MemberID, GiftName, GroupID, 
+      CreateDate, CardID, IsBaptism, 
+      BaptismDate, JoinChurchDate, NativePlace, 
+      CurrentAddress, Speciality, AssistantGrouper, 
+      ProfessionName, ContributionNO, IsDelete, 
+      OtherGroupID, Birthday, Barcode, 
+      WeChatName, Description)
+    values (#{userid,jdbcType=INTEGER}, #{loginname,jdbcType=NVARCHAR}, #{password,jdbcType=NVARCHAR}, 
+      #{username,jdbcType=NVARCHAR}, #{nickname,jdbcType=NVARCHAR}, #{gender,jdbcType=NVARCHAR}, 
+      #{personid,jdbcType=NVARCHAR}, #{education,jdbcType=NVARCHAR}, #{marriage,jdbcType=NVARCHAR}, 
+      #{phone,jdbcType=NVARCHAR}, #{courseid,jdbcType=CHAR}, #{miniroleid,jdbcType=CHAR}, 
+      #{memberid,jdbcType=CHAR}, #{giftname,jdbcType=NVARCHAR}, #{groupid,jdbcType=CHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{cardid,jdbcType=NVARCHAR}, #{isbaptism,jdbcType=INTEGER}, 
+      #{baptismdate,jdbcType=DATE}, #{joinchurchdate,jdbcType=DATE}, #{nativeplace,jdbcType=NVARCHAR}, 
+      #{currentaddress,jdbcType=NVARCHAR}, #{speciality,jdbcType=NVARCHAR}, #{assistantgrouper,jdbcType=NVARCHAR}, 
+      #{professionname,jdbcType=NVARCHAR}, #{contributionno,jdbcType=NVARCHAR}, #{isdelete,jdbcType=INTEGER}, 
+      #{othergroupid,jdbcType=CHAR}, #{birthday,jdbcType=NVARCHAR}, #{barcode,jdbcType=NVARCHAR}, 
+      #{wechatname,jdbcType=NVARCHAR}, #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.UserInfo" >
+    insert into UserInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="loginname != null" >
+        LoginName,
+      </if>
+      <if test="password != null" >
+        PassWord,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="gender != null" >
+        Gender,
+      </if>
+      <if test="personid != null" >
+        PersonID,
+      </if>
+      <if test="education != null" >
+        Education,
+      </if>
+      <if test="marriage != null" >
+        Marriage,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="courseid != null" >
+        CourseID,
+      </if>
+      <if test="miniroleid != null" >
+        MiniRoleID,
+      </if>
+      <if test="memberid != null" >
+        MemberID,
+      </if>
+      <if test="giftname != null" >
+        GiftName,
+      </if>
+      <if test="groupid != null" >
+        GroupID,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+      <if test="cardid != null" >
+        CardID,
+      </if>
+      <if test="isbaptism != null" >
+        IsBaptism,
+      </if>
+      <if test="baptismdate != null" >
+        BaptismDate,
+      </if>
+      <if test="joinchurchdate != null" >
+        JoinChurchDate,
+      </if>
+      <if test="nativeplace != null" >
+        NativePlace,
+      </if>
+      <if test="currentaddress != null" >
+        CurrentAddress,
+      </if>
+      <if test="speciality != null" >
+        Speciality,
+      </if>
+      <if test="assistantgrouper != null" >
+        AssistantGrouper,
+      </if>
+      <if test="professionname != null" >
+        ProfessionName,
+      </if>
+      <if test="contributionno != null" >
+        ContributionNO,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="othergroupid != null" >
+        OtherGroupID,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="barcode != null" >
+        Barcode,
+      </if>
+      <if test="wechatname != null" >
+        WeChatName,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=NVARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=NVARCHAR},
+      </if>
+      <if test="personid != null" >
+        #{personid,jdbcType=NVARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=NVARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=NVARCHAR},
+      </if>
+      <if test="courseid != null" >
+        #{courseid,jdbcType=CHAR},
+      </if>
+      <if test="miniroleid != null" >
+        #{miniroleid,jdbcType=CHAR},
+      </if>
+      <if test="memberid != null" >
+        #{memberid,jdbcType=CHAR},
+      </if>
+      <if test="giftname != null" >
+        #{giftname,jdbcType=NVARCHAR},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardid != null" >
+        #{cardid,jdbcType=NVARCHAR},
+      </if>
+      <if test="isbaptism != null" >
+        #{isbaptism,jdbcType=INTEGER},
+      </if>
+      <if test="baptismdate != null" >
+        #{baptismdate,jdbcType=DATE},
+      </if>
+      <if test="joinchurchdate != null" >
+        #{joinchurchdate,jdbcType=DATE},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=NVARCHAR},
+      </if>
+      <if test="currentaddress != null" >
+        #{currentaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="speciality != null" >
+        #{speciality,jdbcType=NVARCHAR},
+      </if>
+      <if test="assistantgrouper != null" >
+        #{assistantgrouper,jdbcType=NVARCHAR},
+      </if>
+      <if test="professionname != null" >
+        #{professionname,jdbcType=NVARCHAR},
+      </if>
+      <if test="contributionno != null" >
+        #{contributionno,jdbcType=NVARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="othergroupid != null" >
+        #{othergroupid,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=NVARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="wechatname != null" >
+        #{wechatname,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.UserInfo" >
+    update UserInfo
+    <set >
+      <if test="loginname != null" >
+        LoginName = #{loginname,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        PassWord = #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NickName = #{nickname,jdbcType=NVARCHAR},
+      </if>
+      <if test="gender != null" >
+        Gender = #{gender,jdbcType=NVARCHAR},
+      </if>
+      <if test="personid != null" >
+        PersonID = #{personid,jdbcType=NVARCHAR},
+      </if>
+      <if test="education != null" >
+        Education = #{education,jdbcType=NVARCHAR},
+      </if>
+      <if test="marriage != null" >
+        Marriage = #{marriage,jdbcType=NVARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=NVARCHAR},
+      </if>
+      <if test="courseid != null" >
+        CourseID = #{courseid,jdbcType=CHAR},
+      </if>
+      <if test="miniroleid != null" >
+        MiniRoleID = #{miniroleid,jdbcType=CHAR},
+      </if>
+      <if test="memberid != null" >
+        MemberID = #{memberid,jdbcType=CHAR},
+      </if>
+      <if test="giftname != null" >
+        GiftName = #{giftname,jdbcType=NVARCHAR},
+      </if>
+      <if test="groupid != null" >
+        GroupID = #{groupid,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardid != null" >
+        CardID = #{cardid,jdbcType=NVARCHAR},
+      </if>
+      <if test="isbaptism != null" >
+        IsBaptism = #{isbaptism,jdbcType=INTEGER},
+      </if>
+      <if test="baptismdate != null" >
+        BaptismDate = #{baptismdate,jdbcType=DATE},
+      </if>
+      <if test="joinchurchdate != null" >
+        JoinChurchDate = #{joinchurchdate,jdbcType=DATE},
+      </if>
+      <if test="nativeplace != null" >
+        NativePlace = #{nativeplace,jdbcType=NVARCHAR},
+      </if>
+      <if test="currentaddress != null" >
+        CurrentAddress = #{currentaddress,jdbcType=NVARCHAR},
+      </if>
+      <if test="speciality != null" >
+        Speciality = #{speciality,jdbcType=NVARCHAR},
+      </if>
+      <if test="assistantgrouper != null" >
+        AssistantGrouper = #{assistantgrouper,jdbcType=NVARCHAR},
+      </if>
+      <if test="professionname != null" >
+        ProfessionName = #{professionname,jdbcType=NVARCHAR},
+      </if>
+      <if test="contributionno != null" >
+        ContributionNO = #{contributionno,jdbcType=NVARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        IsDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="othergroupid != null" >
+        OtherGroupID = #{othergroupid,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=NVARCHAR},
+      </if>
+      <if test="barcode != null" >
+        Barcode = #{barcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="wechatname != null" >
+        WeChatName = #{wechatname,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.UserInfo" >
+    update UserInfo
+    set LoginName = #{loginname,jdbcType=NVARCHAR},
+      PassWord = #{password,jdbcType=NVARCHAR},
+      UserName = #{username,jdbcType=NVARCHAR},
+      NickName = #{nickname,jdbcType=NVARCHAR},
+      Gender = #{gender,jdbcType=NVARCHAR},
+      PersonID = #{personid,jdbcType=NVARCHAR},
+      Education = #{education,jdbcType=NVARCHAR},
+      Marriage = #{marriage,jdbcType=NVARCHAR},
+      Phone = #{phone,jdbcType=NVARCHAR},
+      CourseID = #{courseid,jdbcType=CHAR},
+      MiniRoleID = #{miniroleid,jdbcType=CHAR},
+      MemberID = #{memberid,jdbcType=CHAR},
+      GiftName = #{giftname,jdbcType=NVARCHAR},
+      GroupID = #{groupid,jdbcType=CHAR},
+      CreateDate = #{createdate,jdbcType=TIMESTAMP},
+      CardID = #{cardid,jdbcType=NVARCHAR},
+      IsBaptism = #{isbaptism,jdbcType=INTEGER},
+      BaptismDate = #{baptismdate,jdbcType=DATE},
+      JoinChurchDate = #{joinchurchdate,jdbcType=DATE},
+      NativePlace = #{nativeplace,jdbcType=NVARCHAR},
+      CurrentAddress = #{currentaddress,jdbcType=NVARCHAR},
+      Speciality = #{speciality,jdbcType=NVARCHAR},
+      AssistantGrouper = #{assistantgrouper,jdbcType=NVARCHAR},
+      ProfessionName = #{professionname,jdbcType=NVARCHAR},
+      ContributionNO = #{contributionno,jdbcType=NVARCHAR},
+      IsDelete = #{isdelete,jdbcType=INTEGER},
+      OtherGroupID = #{othergroupid,jdbcType=CHAR},
+      Birthday = #{birthday,jdbcType=NVARCHAR},
+      Barcode = #{barcode,jdbcType=NVARCHAR},
+      WeChatName = #{wechatname,jdbcType=NVARCHAR},
+      Description = #{description,jdbcType=NVARCHAR}
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

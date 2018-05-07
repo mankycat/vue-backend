@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.GroupFiveWMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.GroupFiveW" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="WeekReportID" property="weekreportid" jdbcType="CHAR" />
+    <result column="Flow" property="flow" jdbcType="NVARCHAR" />
+    <result column="BeginTime" property="begintime" jdbcType="TIME" />
+    <result column="EndTime" property="endtime" jdbcType="TIME" />
+    <result column="LeaderID" property="leaderid" jdbcType="INTEGER" />
+    <result column="GroupDate" property="groupdate" jdbcType="DATE" />
+    <result column="GroupContent" property="groupcontent" jdbcType="NVARCHAR" />
+    <result column="ContentDetails" property="contentdetails" jdbcType="NVARCHAR" />
+    <result column="IntrospectionNum" property="introspectionnum" jdbcType="INTEGER" />
+    <result column="JoinGroupNum" property="joingroupnum" jdbcType="INTEGER" />
+    <result column="JoinChurchNum" property="joinchurchnum" jdbcType="INTEGER" />
+    <result column="Opinion" property="opinion" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, WeekReportID, Flow, BeginTime, EndTime, LeaderID, GroupDate, GroupContent, ContentDetails, 
+    IntrospectionNum, JoinGroupNum, JoinChurchNum, Opinion
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from GroupFiveW
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from GroupFiveW
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.GroupFiveW" >
+    insert into GroupFiveW (ID, WeekReportID, Flow, 
+      BeginTime, EndTime, LeaderID, 
+      GroupDate, GroupContent, ContentDetails, 
+      IntrospectionNum, JoinGroupNum, JoinChurchNum, 
+      Opinion)
+    values (#{id,jdbcType=CHAR}, #{weekreportid,jdbcType=CHAR}, #{flow,jdbcType=NVARCHAR}, 
+      #{begintime,jdbcType=TIME}, #{endtime,jdbcType=TIME}, #{leaderid,jdbcType=INTEGER}, 
+      #{groupdate,jdbcType=DATE}, #{groupcontent,jdbcType=NVARCHAR}, #{contentdetails,jdbcType=NVARCHAR}, 
+      #{introspectionnum,jdbcType=INTEGER}, #{joingroupnum,jdbcType=INTEGER}, #{joinchurchnum,jdbcType=INTEGER}, 
+      #{opinion,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.GroupFiveW" >
+    insert into GroupFiveW
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="weekreportid != null" >
+        WeekReportID,
+      </if>
+      <if test="flow != null" >
+        Flow,
+      </if>
+      <if test="begintime != null" >
+        BeginTime,
+      </if>
+      <if test="endtime != null" >
+        EndTime,
+      </if>
+      <if test="leaderid != null" >
+        LeaderID,
+      </if>
+      <if test="groupdate != null" >
+        GroupDate,
+      </if>
+      <if test="groupcontent != null" >
+        GroupContent,
+      </if>
+      <if test="contentdetails != null" >
+        ContentDetails,
+      </if>
+      <if test="introspectionnum != null" >
+        IntrospectionNum,
+      </if>
+      <if test="joingroupnum != null" >
+        JoinGroupNum,
+      </if>
+      <if test="joinchurchnum != null" >
+        JoinChurchNum,
+      </if>
+      <if test="opinion != null" >
+        Opinion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="weekreportid != null" >
+        #{weekreportid,jdbcType=CHAR},
+      </if>
+      <if test="flow != null" >
+        #{flow,jdbcType=NVARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIME},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIME},
+      </if>
+      <if test="leaderid != null" >
+        #{leaderid,jdbcType=INTEGER},
+      </if>
+      <if test="groupdate != null" >
+        #{groupdate,jdbcType=DATE},
+      </if>
+      <if test="groupcontent != null" >
+        #{groupcontent,jdbcType=NVARCHAR},
+      </if>
+      <if test="contentdetails != null" >
+        #{contentdetails,jdbcType=NVARCHAR},
+      </if>
+      <if test="introspectionnum != null" >
+        #{introspectionnum,jdbcType=INTEGER},
+      </if>
+      <if test="joingroupnum != null" >
+        #{joingroupnum,jdbcType=INTEGER},
+      </if>
+      <if test="joinchurchnum != null" >
+        #{joinchurchnum,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.GroupFiveW" >
+    update GroupFiveW
+    <set >
+      <if test="weekreportid != null" >
+        WeekReportID = #{weekreportid,jdbcType=CHAR},
+      </if>
+      <if test="flow != null" >
+        Flow = #{flow,jdbcType=NVARCHAR},
+      </if>
+      <if test="begintime != null" >
+        BeginTime = #{begintime,jdbcType=TIME},
+      </if>
+      <if test="endtime != null" >
+        EndTime = #{endtime,jdbcType=TIME},
+      </if>
+      <if test="leaderid != null" >
+        LeaderID = #{leaderid,jdbcType=INTEGER},
+      </if>
+      <if test="groupdate != null" >
+        GroupDate = #{groupdate,jdbcType=DATE},
+      </if>
+      <if test="groupcontent != null" >
+        GroupContent = #{groupcontent,jdbcType=NVARCHAR},
+      </if>
+      <if test="contentdetails != null" >
+        ContentDetails = #{contentdetails,jdbcType=NVARCHAR},
+      </if>
+      <if test="introspectionnum != null" >
+        IntrospectionNum = #{introspectionnum,jdbcType=INTEGER},
+      </if>
+      <if test="joingroupnum != null" >
+        JoinGroupNum = #{joingroupnum,jdbcType=INTEGER},
+      </if>
+      <if test="joinchurchnum != null" >
+        JoinChurchNum = #{joinchurchnum,jdbcType=INTEGER},
+      </if>
+      <if test="opinion != null" >
+        Opinion = #{opinion,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.GroupFiveW" >
+    update GroupFiveW
+    set WeekReportID = #{weekreportid,jdbcType=CHAR},
+      Flow = #{flow,jdbcType=NVARCHAR},
+      BeginTime = #{begintime,jdbcType=TIME},
+      EndTime = #{endtime,jdbcType=TIME},
+      LeaderID = #{leaderid,jdbcType=INTEGER},
+      GroupDate = #{groupdate,jdbcType=DATE},
+      GroupContent = #{groupcontent,jdbcType=NVARCHAR},
+      ContentDetails = #{contentdetails,jdbcType=NVARCHAR},
+      IntrospectionNum = #{introspectionnum,jdbcType=INTEGER},
+      JoinGroupNum = #{joingroupnum,jdbcType=INTEGER},
+      JoinChurchNum = #{joinchurchnum,jdbcType=INTEGER},
+      Opinion = #{opinion,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

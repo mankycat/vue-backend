@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="brucewu.cc.church.mapper.RegisterManageMapper" >
+  <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.RegisterManage" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="RegisterName" property="registername" jdbcType="NVARCHAR" />
+    <result column="RegisterFile" property="registerfile" jdbcType="NVARCHAR" />
+    <result column="RegisterSite" property="registersite" jdbcType="NVARCHAR" />
+    <result column="RegisterDate" property="registerdate" jdbcType="DATE" />
+    <result column="FinalDate" property="finaldate" jdbcType="DATE" />
+    <result column="RegisterCategoryID" property="registercategoryid" jdbcType="CHAR" />
+    <result column="LocationID" property="locationid" jdbcType="CHAR" />
+    <result column="MachineNO" property="machineno" jdbcType="NVARCHAR" />
+    <result column="Operator" property="operator" jdbcType="INTEGER" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="SingleFee" property="singlefee" jdbcType="NUMERIC" />
+    <result column="BeginTime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="EndTime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="IsChargeProject" property="ischargeproject" jdbcType="INTEGER" />
+    <result column="AlipayTwoDimensionalCode" property="alipaytwodimensionalcode" jdbcType="NVARCHAR" />
+    <result column="WeChatTwoDimensionalCode" property="wechattwodimensionalcode" jdbcType="NVARCHAR" />
+    <result column="BankName" property="bankname" jdbcType="NVARCHAR" />
+    <result column="BankAccount" property="bankaccount" jdbcType="NVARCHAR" />
+    <result column="FreeUserIDS" property="freeuserids" jdbcType="NVARCHAR" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RegisterName, RegisterFile, RegisterSite, RegisterDate, FinalDate, RegisterCategoryID, 
+    LocationID, MachineNO, Operator, CreateTime, SingleFee, BeginTime, EndTime, IsChargeProject, 
+    AlipayTwoDimensionalCode, WeChatTwoDimensionalCode, BankName, BankAccount, FreeUserIDS, 
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from RegisterManage
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from RegisterManage
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="brucewu.cc.church.bean.RegisterManage" >
+    insert into RegisterManage (ID, RegisterName, RegisterFile, 
+      RegisterSite, RegisterDate, FinalDate, 
+      RegisterCategoryID, LocationID, MachineNO, 
+      Operator, CreateTime, SingleFee, 
+      BeginTime, EndTime, IsChargeProject, 
+      AlipayTwoDimensionalCode, WeChatTwoDimensionalCode, 
+      BankName, BankAccount, FreeUserIDS, 
+      Description)
+    values (#{id,jdbcType=CHAR}, #{registername,jdbcType=NVARCHAR}, #{registerfile,jdbcType=NVARCHAR}, 
+      #{registersite,jdbcType=NVARCHAR}, #{registerdate,jdbcType=DATE}, #{finaldate,jdbcType=DATE}, 
+      #{registercategoryid,jdbcType=CHAR}, #{locationid,jdbcType=CHAR}, #{machineno,jdbcType=NVARCHAR}, 
+      #{operator,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{singlefee,jdbcType=NUMERIC}, 
+      #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{ischargeproject,jdbcType=INTEGER}, 
+      #{alipaytwodimensionalcode,jdbcType=NVARCHAR}, #{wechattwodimensionalcode,jdbcType=NVARCHAR}, 
+      #{bankname,jdbcType=NVARCHAR}, #{bankaccount,jdbcType=NVARCHAR}, #{freeuserids,jdbcType=NVARCHAR}, 
+      #{description,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="brucewu.cc.church.bean.RegisterManage" >
+    insert into RegisterManage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="registername != null" >
+        RegisterName,
+      </if>
+      <if test="registerfile != null" >
+        RegisterFile,
+      </if>
+      <if test="registersite != null" >
+        RegisterSite,
+      </if>
+      <if test="registerdate != null" >
+        RegisterDate,
+      </if>
+      <if test="finaldate != null" >
+        FinalDate,
+      </if>
+      <if test="registercategoryid != null" >
+        RegisterCategoryID,
+      </if>
+      <if test="locationid != null" >
+        LocationID,
+      </if>
+      <if test="machineno != null" >
+        MachineNO,
+      </if>
+      <if test="operator != null" >
+        Operator,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="singlefee != null" >
+        SingleFee,
+      </if>
+      <if test="begintime != null" >
+        BeginTime,
+      </if>
+      <if test="endtime != null" >
+        EndTime,
+      </if>
+      <if test="ischargeproject != null" >
+        IsChargeProject,
+      </if>
+      <if test="alipaytwodimensionalcode != null" >
+        AlipayTwoDimensionalCode,
+      </if>
+      <if test="wechattwodimensionalcode != null" >
+        WeChatTwoDimensionalCode,
+      </if>
+      <if test="bankname != null" >
+        BankName,
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount,
+      </if>
+      <if test="freeuserids != null" >
+        FreeUserIDS,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="registername != null" >
+        #{registername,jdbcType=NVARCHAR},
+      </if>
+      <if test="registerfile != null" >
+        #{registerfile,jdbcType=NVARCHAR},
+      </if>
+      <if test="registersite != null" >
+        #{registersite,jdbcType=NVARCHAR},
+      </if>
+      <if test="registerdate != null" >
+        #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="finaldate != null" >
+        #{finaldate,jdbcType=DATE},
+      </if>
+      <if test="registercategoryid != null" >
+        #{registercategoryid,jdbcType=CHAR},
+      </if>
+      <if test="locationid != null" >
+        #{locationid,jdbcType=CHAR},
+      </if>
+      <if test="machineno != null" >
+        #{machineno,jdbcType=NVARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="singlefee != null" >
+        #{singlefee,jdbcType=NUMERIC},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ischargeproject != null" >
+        #{ischargeproject,jdbcType=INTEGER},
+      </if>
+      <if test="alipaytwodimensionalcode != null" >
+        #{alipaytwodimensionalcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="wechattwodimensionalcode != null" >
+        #{wechattwodimensionalcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeuserids != null" >
+        #{freeuserids,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="brucewu.cc.church.bean.RegisterManage" >
+    update RegisterManage
+    <set >
+      <if test="registername != null" >
+        RegisterName = #{registername,jdbcType=NVARCHAR},
+      </if>
+      <if test="registerfile != null" >
+        RegisterFile = #{registerfile,jdbcType=NVARCHAR},
+      </if>
+      <if test="registersite != null" >
+        RegisterSite = #{registersite,jdbcType=NVARCHAR},
+      </if>
+      <if test="registerdate != null" >
+        RegisterDate = #{registerdate,jdbcType=DATE},
+      </if>
+      <if test="finaldate != null" >
+        FinalDate = #{finaldate,jdbcType=DATE},
+      </if>
+      <if test="registercategoryid != null" >
+        RegisterCategoryID = #{registercategoryid,jdbcType=CHAR},
+      </if>
+      <if test="locationid != null" >
+        LocationID = #{locationid,jdbcType=CHAR},
+      </if>
+      <if test="machineno != null" >
+        MachineNO = #{machineno,jdbcType=NVARCHAR},
+      </if>
+      <if test="operator != null" >
+        Operator = #{operator,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="singlefee != null" >
+        SingleFee = #{singlefee,jdbcType=NUMERIC},
+      </if>
+      <if test="begintime != null" >
+        BeginTime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        EndTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ischargeproject != null" >
+        IsChargeProject = #{ischargeproject,jdbcType=INTEGER},
+      </if>
+      <if test="alipaytwodimensionalcode != null" >
+        AlipayTwoDimensionalCode = #{alipaytwodimensionalcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="wechattwodimensionalcode != null" >
+        WeChatTwoDimensionalCode = #{wechattwodimensionalcode,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankname != null" >
+        BankName = #{bankname,jdbcType=NVARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount = #{bankaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="freeuserids != null" >
+        FreeUserIDS = #{freeuserids,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="brucewu.cc.church.bean.RegisterManage" >
+    update RegisterManage
+    set RegisterName = #{registername,jdbcType=NVARCHAR},
+      RegisterFile = #{registerfile,jdbcType=NVARCHAR},
+      RegisterSite = #{registersite,jdbcType=NVARCHAR},
+      RegisterDate = #{registerdate,jdbcType=DATE},
+      FinalDate = #{finaldate,jdbcType=DATE},
+      RegisterCategoryID = #{registercategoryid,jdbcType=CHAR},
+      LocationID = #{locationid,jdbcType=CHAR},
+      MachineNO = #{machineno,jdbcType=NVARCHAR},
+      Operator = #{operator,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      SingleFee = #{singlefee,jdbcType=NUMERIC},
+      BeginTime = #{begintime,jdbcType=TIMESTAMP},
+      EndTime = #{endtime,jdbcType=TIMESTAMP},
+      IsChargeProject = #{ischargeproject,jdbcType=INTEGER},
+      AlipayTwoDimensionalCode = #{alipaytwodimensionalcode,jdbcType=NVARCHAR},
+      WeChatTwoDimensionalCode = #{wechattwodimensionalcode,jdbcType=NVARCHAR},
+      BankName = #{bankname,jdbcType=NVARCHAR},
+      BankAccount = #{bankaccount,jdbcType=NVARCHAR},
+      FreeUserIDS = #{freeuserids,jdbcType=NVARCHAR},
+      Description = #{description,jdbcType=NVARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>
