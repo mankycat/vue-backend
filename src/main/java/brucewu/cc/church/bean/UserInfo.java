@@ -67,6 +67,8 @@ public class UserInfo {
 
     private String description;
 
+    private Organization organization;
+
     public Integer getUserid() {
         return userid;
     }
@@ -321,5 +323,13 @@ public class UserInfo {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 }
