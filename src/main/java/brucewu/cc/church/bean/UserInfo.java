@@ -1,8 +1,15 @@
 package brucewu.cc.church.bean;
 
-import java.util.Date;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class UserInfo {
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+
+public class UserInfo implements UserDetails {
     private Integer userid;
 
     private String loginname;
@@ -85,6 +92,15 @@ public class UserInfo {
         this.loginname = loginname == null ? null : loginname.trim();
     }
 
+    //spring security control method
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(organization.getRolename()));
+
+        return authorities;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -95,6 +111,30 @@ public class UserInfo {
 
     public String getUsername() {
         return username;
+    }
+
+    //spring security control method
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    //spring security control method
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    //spring security control method
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    //spring security control method
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setUsername(String username) {
