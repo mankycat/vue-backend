@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service(value = "/userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
 
@@ -23,6 +25,21 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public int updatePassword(UserInfo userInfo) {
         return userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
+    @Override
+    public List<UserInfo> getMemberFromGroup(String groupId) {
+       return userInfoMapper.getMemberFromGroup(groupId);
+    }
+
+    @Override
+    public UserInfo findUserById(int id) {
+        return userInfoMapper.findUserById(id);
+    }
+
+    @Override
+    public void update(UserInfo userInfo) {
+        userInfoMapper.updateByPrimaryKeySelective(userInfo);
     }
 
     @Override

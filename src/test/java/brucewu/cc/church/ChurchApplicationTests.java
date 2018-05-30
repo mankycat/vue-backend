@@ -15,9 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.DigestUtils;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@MapperScan("brucewu.cc.church.mapper")
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@MapperScan("brucewu.cc.church.mapper")
 public class ChurchApplicationTests {
 
 	private static Logger logger = LoggerFactory.getLogger(ChurchApplicationTests.class);
@@ -30,7 +30,7 @@ public class ChurchApplicationTests {
 //
 //	}
 //
-	@Test
+//	@Test
 	public void test(){
 		UserInfo userInfo =
 				userInfoMapper.login("管理员","admin" , CipherUtils.encodeWithBase64("654123"));

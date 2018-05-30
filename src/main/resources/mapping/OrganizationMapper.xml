@@ -24,6 +24,12 @@
     from Organization
     where ID = #{id,jdbcType=CHAR}
   </select>
+  <select id="selectByParentId" resultType="brucewu.cc.church.bean.Organization">
+    select
+    <include refid="Base_Column_List" />
+    from Organization
+    where ParentID = #{parentId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from Organization
     where ID = #{id,jdbcType=CHAR}

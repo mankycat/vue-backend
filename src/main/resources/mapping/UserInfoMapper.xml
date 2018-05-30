@@ -34,11 +34,11 @@
     <result column="Barcode" property="barcode" jdbcType="NVARCHAR" />
     <result column="WeChatName" property="wechatname" jdbcType="NVARCHAR" />
     <result column="Description" property="description" jdbcType="NVARCHAR" />
-    <association property="organization" javaType="brucewu.cc.church.bean.Organization">
+    <collection property="organization" ofType="brucewu.cc.church.bean.Organization">
       <id column="oid" property="id" jdbcType="CHAR"></id>
       <result column="orgname" property="organizationname"></result>
       <result column="orgrole" property="rolename"></result>
-    </association>
+    </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     ui.*, org.ID as oid , org.OrganizationName as orgname , org.RoleName as orgrole
@@ -50,11 +50,22 @@
     inner join Organization org on org.ID = ug.OrganizationID
     where ui.loginname = #{loginname} or ui.username=#{loginname}
   </select>
+  <select id="getMemberFromGroup" resultType="brucewu.cc.church.bean.UserInfo">
+    select ui.*
+    from UserInfo ui
+    where ui.GroupID=#{groupId}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from UserInfo ui inner join UserOrganization ug on ui.UserID = ug.UserID
     inner join Organization org on org.ID = ug.OrganizationID
+    where ui.UserID = #{userid,jdbcType=INTEGER}
+  </select>
+  <select id="findUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    ui.*
+    from UserInfo ui
     where ui.UserID = #{userid,jdbcType=INTEGER}
   </select>
   <select id="login" resultMap="BaseResultMap">

@@ -2,6 +2,8 @@ package brucewu.cc.church.mapper;
 
 import brucewu.cc.church.bean.Organization;
 
+import java.util.List;
+
 public interface OrganizationMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface OrganizationMapper {
     int updateByPrimaryKeySelective(Organization record);
 
     int updateByPrimaryKey(Organization record);
+
+    List<Organization> selectByParentId(String parentId);
 }

@@ -74,7 +74,7 @@ public class UserInfo implements UserDetails {
 
     private String description;
 
-    private Organization organization;
+    private List<Organization> organization;
 
     public Integer getUserid() {
         return userid;
@@ -96,7 +96,10 @@ public class UserInfo implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(organization.getRolename()));
+        if(organization != null){
+            for (Organization org : organization)
+                authorities.add(new SimpleGrantedAuthority(org.getRolename()));
+        }
 
         return authorities;
     }
@@ -365,11 +368,11 @@ public class UserInfo implements UserDetails {
         this.description = description == null ? null : description.trim();
     }
 
-    public Organization getOrganization() {
+    public List<Organization> getOrganization() {
         return organization;
     }
 
-    public void setOrganization(Organization organization) {
+    public void setOrganization(List<Organization> organization) {
         this.organization = organization;
     }
 }
