@@ -27,4 +27,6 @@ public interface UserInfoMapper {
     List getMemberFromGroup(String groupId);
 
     UserInfo findUserById(Integer userid);
+
+    int getCurrentMaxId(String date);
 }

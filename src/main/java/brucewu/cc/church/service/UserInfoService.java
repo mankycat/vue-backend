@@ -16,4 +16,6 @@ public interface UserInfoService extends UserDetailsService {
     UserInfo findUserById(int id);
 
     void update(UserInfo userInfo);
+
+    int getMaxUserId();
 }

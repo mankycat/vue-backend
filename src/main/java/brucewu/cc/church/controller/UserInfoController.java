@@ -103,6 +103,20 @@ public class UserInfoController {
         return resp;
     }
 
+    @RequestMapping("/getCurrentUserId")
+    public Response getCurrentUserId(){
+        Response resp = new Response();
+        try{
+            int value = userInfoService.getMaxUserId();
+            resp.setStatus(Response.STATUS_SUCCESS);
+            resp.setData(value);
+        }catch (Exception e){
+            resp.setStatus(Response.STATUS_ERROR);
+            resp.setMsg(e.getMessage());
+        }
+        return resp;
+    }
+
     @RequestMapping("/updateMember")
     public Response updatePassword(@RequestParam("userId") int userId, @RequestParam("mobile") String mobile,
                                    @RequestParam("username") String username , @RequestParam("loginname") String loginname) {

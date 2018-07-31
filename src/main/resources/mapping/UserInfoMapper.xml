@@ -55,6 +55,11 @@
     from UserInfo ui
     where ui.GroupID=#{groupId}
   </select>
+  <select id="getCurrentMaxId" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select max(ui.UserID)
+    from UserInfo ui
+    where 1=1 and ui.UserID like #{date}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

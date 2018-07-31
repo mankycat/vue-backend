@@ -1,6 +1,7 @@
 package brucewu.cc.church.service.impl;
 
 import brucewu.cc.church.bean.UserInfo;
+import brucewu.cc.church.common.DateConverter;
 import brucewu.cc.church.mapper.UserInfoMapper;
 import brucewu.cc.church.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,20 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public void update(UserInfo userInfo) {
         userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
+    @Override
+    public int getMaxUserId() {
+        String currentDate = DateConverter.getStringDateFrom("yyyyMM");
+        int value = 0;
+        try{
+            value = userInfoMapper.getCurrentMaxId(currentDate + "%");
+            value += 1;
+        }catch (Exception e){
+            value = Integer.parseInt(currentDate) * 10000 + 1;
+        }
+
+        return value;
     }
 
     @Override
