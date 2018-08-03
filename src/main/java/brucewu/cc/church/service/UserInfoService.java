@@ -19,5 +19,6 @@ public interface UserInfoService extends UserDetailsService {
 
     int getMaxUserId();
 
-    int insertNewMember(String loginName , String userName , String nickName , String password ,String groupId);
+    int insertNewMember(String loginName, String userName, String nickName, String password,
+                        String phone , String gender , String groupId);
 }

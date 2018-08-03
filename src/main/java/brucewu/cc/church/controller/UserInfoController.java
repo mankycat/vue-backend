@@ -103,13 +103,22 @@ public class UserInfoController {
         return resp;
     }
 
-    @RequestMapping("/getCurrentUserId")
-    public Response getCurrentUserId(){
+    @RequestMapping("/newMember")
+    public Response newMember(@RequestParam("loginname") String loginName, @RequestParam("username") String userName,
+                              @RequestParam("nickname") String nickName, @RequestParam("password") String password,
+                              @RequestParam("phone") String phone , @RequestParam("gender") String gender ,
+                              @RequestParam("groupid") String groupId){
         Response resp = new Response();
+        resp.setStatus(Response.STATUS_ERROR);
+        UserInfo userInfo = UserUtils.getCurrentUser();
+        if(userInfo == null ){
+            resp.setMsg(Response.MSG_TIME_OUT);
+            return resp;
+        }
         try{
-            int value = userInfoService.getMaxUserId();
+            userInfoService.insertNewMember(loginName , userName , nickName , password , phone , gender  , groupId);
             resp.setStatus(Response.STATUS_SUCCESS);
-            resp.setData(value);
+            resp.setMsg(Response.MSG_SUCCESS);
         }catch (Exception e){
             resp.setStatus(Response.STATUS_ERROR);
             resp.setMsg(e.getMessage());

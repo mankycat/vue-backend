@@ -1,6 +1,7 @@
 package brucewu.cc.church.service.impl;
 
 import brucewu.cc.church.bean.UserInfo;
+import brucewu.cc.church.common.CipherUtils;
 import brucewu.cc.church.common.DateConverter;
 import brucewu.cc.church.mapper.UserInfoMapper;
 import brucewu.cc.church.service.UserInfoService;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service(value = "/userInfoService")
@@ -55,6 +57,39 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
         return value;
+    }
+
+    private UserInfo generateUserInfo(String loginName, String userName, String nickName, String password,
+                                      String phone , String gender , String groupId){
+        UserInfo userInfo = new UserInfo();
+        int primaryKey = getMaxUserId();
+        userInfo.setUserid(primaryKey);
+        userInfo.setLoginname(loginName);
+        userInfo.setUsername(userName);
+        userInfo.setNickname(nickName);
+        userInfo.setPassword(CipherUtils.encodeWithBase64(password));
+        userInfo.setPhone(phone);
+        userInfo.setGender(gender);
+        userInfo.setGroupid(groupId);
+        userInfo.setCourseid("00000000-0000-0000-0000-000000000000");
+        userInfo.setMiniroleid("00000000-0000-0000-0000-000000000000");
+        userInfo.setMemberid("5F7A794B-8F56-47CB-B7FE-D141C0B56FD2");
+        userInfo.setCreatedate(new Date());
+        userInfo.setIsbaptism(0);
+        userInfo.setBaptismdate(DateConverter.strToDateShort("3939-01-01"));
+        userInfo.setJoinchurchdate(new Date());
+        userInfo.setIsdelete(0);
+
+        return userInfo;
+
+    }
+
+    @Override
+    public int insertNewMember(String loginName, String userName, String nickName, String password,
+                               String phone , String gender , String groupId) {
+
+        return userInfoMapper.insertSelective(generateUserInfo(loginName,userName,nickName,password,
+                phone,gender,groupId));
     }
 
     @Override

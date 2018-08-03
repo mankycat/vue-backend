@@ -46,8 +46,8 @@
   <select id="loadUserByUsername" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from UserInfo ui inner join UserOrganization ug on ui.UserID = ug.UserID
-    inner join Organization org on org.ID = ug.OrganizationID
+    from UserInfo ui left join UserOrganization ug on ui.UserID = ug.UserID
+    left join Organization org on org.ID = ug.OrganizationID
     where ui.loginname = #{loginname} or ui.username=#{loginname}
   </select>
   <select id="getMemberFromGroup" resultType="brucewu.cc.church.bean.UserInfo">

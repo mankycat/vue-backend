@@ -3,6 +3,7 @@ package brucewu.cc.church.common;
 import org.springframework.core.convert.converter.Converter;
 
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -56,6 +57,19 @@ public class DateConverter implements Converter<String,Date> {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         String dateString = formatter.format(currentTime);
         return dateString;
+    }
+
+    /**
+     * 将长时间格式字符串转换为时间 yyyy-MM-dd
+     *
+     * @param strDate
+     * @return
+     */
+    public static Date strToDateShort(String strDate) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        ParsePosition pos = new ParsePosition(0);
+        Date strtodate = formatter.parse(strDate, pos);
+        return strtodate;
     }
 
 }
