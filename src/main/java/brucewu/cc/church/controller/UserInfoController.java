@@ -105,7 +105,7 @@ public class UserInfoController {
 
     @RequestMapping("/newMember")
     public Response newMember(@RequestParam("loginname") String loginName, @RequestParam("username") String userName,
-                              @RequestParam("nickname") String nickName, @RequestParam("password") String password,
+                              @RequestParam(value="nickname" , required = false) String nickName, @RequestParam("password") String password,
                               @RequestParam("phone") String phone , @RequestParam("gender") String gender ,
                               @RequestParam("groupid") String groupId){
         Response resp = new Response();
@@ -128,7 +128,8 @@ public class UserInfoController {
 
     @RequestMapping("/updateMember")
     public Response updatePassword(@RequestParam("userId") int userId, @RequestParam("mobile") String mobile,
-                                   @RequestParam("username") String username , @RequestParam("loginname") String loginname) {
+                                   @RequestParam("username") String username , @RequestParam("loginname") String loginname ,
+                                   @RequestParam("gender") String gender) {
         Response resp = new Response();
         resp.setStatus(Response.STATUS_ERROR);
         UserInfo userInfo = UserUtils.getCurrentUser();
@@ -148,6 +149,7 @@ public class UserInfoController {
             member.setLoginname(loginname);
             member.setUsername(username);
             member.setPhone(mobile);
+            member.setGender(gender);
             userInfoService.update(member);
             resp.setStatus(Response.STATUS_SUCCESS);
             resp.setMsg(Response.MSG_SUCCESS);

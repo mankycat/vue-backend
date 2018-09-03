@@ -32,6 +32,8 @@ public class UserInfo implements UserDetails {
 
     private String courseid;
 
+    private String courseName;
+
     private String miniroleid;
 
     private String memberid;
@@ -374,5 +376,13 @@ public class UserInfo implements UserDetails {
 
     public void setOrganization(List<Organization> organization) {
         this.organization = organization;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 }

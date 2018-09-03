@@ -13,6 +13,7 @@
     <result column="Marriage" property="marriage" jdbcType="NVARCHAR" />
     <result column="Phone" property="phone" jdbcType="NVARCHAR" />
     <result column="CourseID" property="courseid" jdbcType="CHAR" />
+    <result column="CourseName" property="courseName" jdbcType="CHAR" />
     <result column="MiniRoleID" property="miniroleid" jdbcType="CHAR" />
     <result column="MemberID" property="memberid" jdbcType="CHAR" />
     <result column="GiftName" property="giftname" jdbcType="NVARCHAR" />
@@ -41,18 +42,18 @@
     </collection>
   </resultMap>
   <sql id="Base_Column_List" >
-    ui.*, org.ID as oid , org.OrganizationName as orgname , org.RoleName as orgrole
+    ui.*, org.ID as oid , org.OrganizationName as orgname , org.RoleName as orgrole , course.CourseName as CourseName
   </sql>
   <select id="loadUserByUsername" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from UserInfo ui left join UserOrganization ug on ui.UserID = ug.UserID
-    left join Organization org on org.ID = ug.OrganizationID
+    inner join Organization org on org.ID = ug.OrganizationID left join Course course on course.ID = ui.CourseID
     where ui.loginname = #{loginname} or ui.username=#{loginname}
   </select>
   <select id="getMemberFromGroup" resultType="brucewu.cc.church.bean.UserInfo">
-    select ui.*
-    from UserInfo ui
+    select ui.* , course.CourseName as CourseName
+    from UserInfo ui left join Course course on course.ID = ui.CourseID
     where ui.GroupID=#{groupId}
   </select>
   <select id="getCurrentMaxId" resultType="java.lang.Integer" parameterType="java.lang.String">
@@ -64,7 +65,7 @@
     select 
     <include refid="Base_Column_List" />
     from UserInfo ui inner join UserOrganization ug on ui.UserID = ug.UserID
-    inner join Organization org on org.ID = ug.OrganizationID
+    inner join Organization org on org.ID = ug.OrganizationID left join Course course on course.ID = ui.CourseID
     where ui.UserID = #{userid,jdbcType=INTEGER}
   </select>
   <select id="findUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -77,7 +78,7 @@
     select
     <include refid="Base_Column_List" />
     from UserInfo ui inner join UserOrganization ug on ui.UserID = ug.UserID
-    inner join Organization org on org.ID = ug.OrganizationID
+    inner join Organization org on org.ID = ug.OrganizationID left join Course course on course.ID = ui.CourseID
     where ui.UserName=#{username} and ui.Loginname=#{loginname} and ui.Password=#{password}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
