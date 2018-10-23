@@ -97,6 +97,7 @@ public class UserInfo implements UserDetails {
     //spring security control method
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        //若有用戶沒有相應的 authorities 則會報錯，在用戶情境中滿足此條件，而且一班用戶無法登入，至少要組長以上
         List<GrantedAuthority> authorities = new ArrayList<>();
         if(organization != null){
             for (Organization org : organization)
