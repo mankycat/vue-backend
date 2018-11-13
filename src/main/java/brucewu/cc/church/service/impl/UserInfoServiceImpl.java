@@ -36,7 +36,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfo findUserById(int id) {
+    public UserInfo findUserById(String id) {
         return userInfoMapper.findUserById(id);
     }
 
@@ -46,14 +46,16 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public int getMaxUserId() {
+    public String getMaxUserId() {
         String currentDate = DateConverter.getStringDateFrom("yyyyMM");
-        int value = 0;
+        String value = null;
         try{
-            value = userInfoMapper.getCurrentMaxId(currentDate + "%");
-            value += 1;
+            value = userInfoMapper.getCurrentMaxId("LC" + currentDate + "%");
+            int intValue = Integer.parseInt(value.substring(2));
+            intValue += 1;
+            value = new StringBuilder().append("LC").append(intValue).toString();
         }catch (Exception e){
-            value = Integer.parseInt(currentDate) * 10000 + 1;
+            value = new StringBuilder().append("LC").append(Integer.parseInt(currentDate) * 10000 + 1).toString();
         }
 
         return value;
@@ -62,7 +64,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     private UserInfo generateUserInfo(String loginName, String userName, String nickName, String password,
                                       String phone , String gender , String groupId){
         UserInfo userInfo = new UserInfo();
-        int primaryKey = getMaxUserId();
+        String primaryKey = getMaxUserId();
         userInfo.setUserid(primaryKey);
         userInfo.setLoginname(loginName);
         userInfo.setUsername(userName);

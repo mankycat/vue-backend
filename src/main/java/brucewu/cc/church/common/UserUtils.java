@@ -21,7 +21,7 @@ public class UserUtils {
         return userInfo;
     }
 
-    public static boolean isCurrentUser(int userId){
+    public static boolean isCurrentUser(String userId){
         if(getCurrentUser().getUserid() == userId) {
             return true;
         } else {

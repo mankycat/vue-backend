@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class UserInfo implements UserDetails {
-    private Integer userid;
+    private String userid;
 
     private String loginname;
 
@@ -78,11 +78,11 @@ public class UserInfo implements UserDetails {
 
     private List<Organization> organization;
 
-    public Integer getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Integer userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 

@@ -13,11 +13,11 @@ public interface UserInfoService extends UserDetailsService {
 
     List<UserInfo> getMemberFromGroup(String groupId);
 
-    UserInfo findUserById(int id);
+    UserInfo findUserById(String id);
 
     void update(UserInfo userInfo);
 
-    int getMaxUserId();
+    String getMaxUserId();
 
     int insertNewMember(String loginName, String userName, String nickName, String password,
                         String phone , String gender , String groupId);

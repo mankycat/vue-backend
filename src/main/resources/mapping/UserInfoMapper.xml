@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="brucewu.cc.church.mapper.UserInfoMapper" >
   <resultMap id="BaseResultMap" type="brucewu.cc.church.bean.UserInfo" >
-    <id column="UserID" property="userid" jdbcType="INTEGER" />
+    <id column="UserID" property="userid" jdbcType="NVARCHAR" />
     <result column="LoginName" property="loginname" jdbcType="NVARCHAR" />
     <result column="PassWord" property="password" jdbcType="NVARCHAR" />
     <result column="UserName" property="username" jdbcType="NVARCHAR" />
@@ -56,7 +56,7 @@
     from UserInfo ui left join Course course on course.ID = ui.CourseID
     where ui.GroupID=#{groupId}
   </select>
-  <select id="getCurrentMaxId" resultType="java.lang.Integer" parameterType="java.lang.String">
+  <select id="getCurrentMaxId" resultType="java.lang.String" parameterType="java.lang.String">
     select max(ui.UserID)
     from UserInfo ui
     where 1=1 and ui.UserID like #{date}
@@ -68,7 +68,7 @@
     inner join Organization org on org.ID = ug.OrganizationID left join Course course on course.ID = ui.CourseID
     where ui.UserID = #{userid,jdbcType=INTEGER}
   </select>
-  <select id="findUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="findUserById" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     ui.*
     from UserInfo ui
@@ -81,7 +81,7 @@
     inner join Organization org on org.ID = ug.OrganizationID left join Course course on course.ID = ui.CourseID
     where ui.UserName=#{username} and ui.Loginname=#{loginname} and ui.Password=#{password}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from UserInfo
     where UserID = #{userid,jdbcType=INTEGER}
   </delete>
@@ -211,7 +211,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
+        #{userid,jdbcType=NVARCHAR},
       </if>
       <if test="loginname != null" >
         #{loginname,jdbcType=NVARCHAR},
@@ -440,6 +440,6 @@
       Barcode = #{barcode,jdbcType=NVARCHAR},
       WeChatName = #{wechatname,jdbcType=NVARCHAR},
       Description = #{description,jdbcType=NVARCHAR}
-    where UserID = #{userid,jdbcType=INTEGER}
+    where UserID = #{userid,jdbcType=NVARCHAR}
   </update>
 </mapper>

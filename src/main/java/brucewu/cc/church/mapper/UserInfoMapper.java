@@ -7,13 +7,13 @@ import java.util.List;
 
 
 public interface UserInfoMapper {
-    int deleteByPrimaryKey(Integer userid);
+    int deleteByPrimaryKey(String userid);
 
     int insert(UserInfo record);
 
     int insertSelective(UserInfo record);
 
-    UserInfo selectByPrimaryKey(Integer userid);
+    UserInfo selectByPrimaryKey(String userid);
 
     int updateByPrimaryKeySelective(UserInfo record);
 
@@ -26,7 +26,7 @@ public interface UserInfoMapper {
 
     List getMemberFromGroup(String groupId);
 
-    UserInfo findUserById(Integer userid);
+    UserInfo findUserById(String userid);
 
-    int getCurrentMaxId(String date);
+    String getCurrentMaxId(String date);
 }

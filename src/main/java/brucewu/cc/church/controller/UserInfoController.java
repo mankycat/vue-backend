@@ -71,7 +71,7 @@ public class UserInfoController {
     }
 
     @RequestMapping("/updatepassword")
-    public Response updatePassword(@RequestParam("userId") int userId, @RequestParam("oPassword") String originPassword,
+    public Response updatePassword(@RequestParam("userId") String userId, @RequestParam("oPassword") String originPassword,
                                    @RequestParam("nPassword") String newPassword) {
         Response resp = new Response();
         resp.setStatus(Response.STATUS_ERROR);
@@ -127,7 +127,7 @@ public class UserInfoController {
     }
 
     @RequestMapping("/updateMember")
-    public Response updatePassword(@RequestParam("userId") int userId, @RequestParam("mobile") String mobile,
+    public Response updatePassword(@RequestParam("userId") String userId, @RequestParam("mobile") String mobile,
                                    @RequestParam("username") String username , @RequestParam("loginname") String loginname ,
                                    @RequestParam("gender") String gender) {
         Response resp = new Response();
