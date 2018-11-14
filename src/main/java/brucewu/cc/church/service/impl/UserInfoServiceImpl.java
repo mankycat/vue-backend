@@ -6,6 +6,7 @@ import brucewu.cc.church.common.DateConverter;
 import brucewu.cc.church.mapper.UserInfoMapper;
 import brucewu.cc.church.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +20,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
     UserInfoMapper userInfoMapper;
+
+    @Value("${serverType}") private String serverType;
 
     @Override
     public UserInfo login(String username, String loginname, String password) {
@@ -50,12 +53,12 @@ public class UserInfoServiceImpl implements UserInfoService {
         String currentDate = DateConverter.getStringDateFrom("yyyyMM");
         String value = null;
         try{
-            value = userInfoMapper.getCurrentMaxId("LC" + currentDate + "%");
+            value = userInfoMapper.getCurrentMaxId(serverType + currentDate + "%");
             int intValue = Integer.parseInt(value.substring(2));
             intValue += 1;
-            value = new StringBuilder().append("LC").append(intValue).toString();
+            value = new StringBuilder().append(serverType).append(intValue).toString();
         }catch (Exception e){
-            value = new StringBuilder().append("LC").append(Integer.parseInt(currentDate) * 10000 + 1).toString();
+            value = new StringBuilder().append(serverType).append(Integer.parseInt(currentDate) * 10000 + 1).toString();
         }
 
         return value;
