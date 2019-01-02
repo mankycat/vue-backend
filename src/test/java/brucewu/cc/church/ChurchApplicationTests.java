@@ -30,12 +30,17 @@ public class ChurchApplicationTests {
 //
 //	}
 //
-//	@Test
+	@Test
 	public void test(){
 		UserInfo userInfo =
-				userInfoMapper.login("管理员","admin" , CipherUtils.encodeWithBase64("654123"));
+				userInfoMapper.login("管理员","admin" , CipherUtils.AESEncrypt("654123"));
 		Assert.assertEquals("admin", userInfo.getLoginname());
 		logger.info(JSON.toJSONString(userInfo));
+	}
+
+	@Test
+	public void testEncode(){
+		System.out.println(CipherUtils.AESEncrypt("123456"));
 	}
 
 }
